@@ -18,7 +18,8 @@ export const tasksTable = pgTable("task", {
     task_content: varchar("task_content", { length: 255 }).notNull(),
     user_id: integer("user_id")
         .notNull()
-        .references(() => usersTable.user_id),
+        .references(() => usersTable.user_id, { onDelete: 'cascade' }),
+
 });
 
 export const subtasksTable = pgTable("subtask", {
@@ -27,7 +28,7 @@ export const subtasksTable = pgTable("subtask", {
     subtask_content: varchar("subtask_content", { length: 255 }).notNull(),
     task_id: integer("task_id")
         .notNull()
-        .references(() => tasksTable.task_id),
+        .references(() => tasksTable.task_id, { onDelete: 'cascade' }),
 });
 
 
